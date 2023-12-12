@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Web Sockets</title>
+    </head>
+<body>
+
+<h1>My First Heading</h1>
+<p>My first paragraph.</p>
+
+<script>
+    /*
+    it creates a WebSocket connection to ws://localhost:8080 
+    (assuming your WebSocket server is running locally on port 8080). 
+    When the WebSocket connection is successfully opened ("open" event), 
+    it logs "connected to backend" to the browser's console.
+    */
+    /*
+    the ws in the HTML script and the ws in the server-side logic are not the same. They refer to different instances of the WebSocket object.
+    */
+    const ws = new WebSocket("ws://localhost:8080");
+    ws.addEventListener("open",()=>{
+        console.log("connected to backend")
+        ws.send("Hello World")
+    });
+
+    ws.addEventListener("message",(e)=>{
+        const {data}=e
+        console.log(data)
+    })
+
+</script>
+
+</body>
+</html>
